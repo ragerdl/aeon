@@ -106,7 +106,7 @@ namespace nervana {
         /** Adjust saturation */
         std::uniform_real_distribution<float> saturation{1.0f, 1.0f};
 
-        /** Rotate hue */
+        /** Rotate hue in degrees. Valid values are [0-360] */
         std::uniform_int_distribution<int>    hue{0, 0};
 
         /** Offset from center for the crop */

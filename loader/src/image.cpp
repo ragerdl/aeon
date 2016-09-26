@@ -191,10 +191,11 @@ void image::photometric::cbsjitter(cv::Mat& inout, float contrast, float brightn
         *****************************/
         cv::Mat hsv;
         cv::cvtColor(inout, hsv, CV_BGR2HSV);
-        if (brightness != 1.0 || saturation != 1.0 || hue != 0) {
+        if (brightness != 1.0 || saturation != 1.0) {
             hsv = hsv.mul(cv::Scalar(1.0, saturation, brightness));
         }
-            if (hue != 0) {
+        if (hue != 0) {
+            hue /= 2;   // hue is 0-360, but opencv used 0-180 to fit in a byte.
             uint8_t* p = hsv.data;
             for(int i=0; i<hsv.size().area(); i++) {
                 *p = (*p + hue) % 180;
